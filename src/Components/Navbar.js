@@ -68,7 +68,7 @@ class ButtonAppBar extends React.Component {
           <DialogTitle id="alert-dialog-title">{"How To Use"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              <b>Bold</b> words for youtube videos. <u>Underline</u> words as terms and <i>italicize</i> words as definitions.
+              <b>Bold</b> words to search for related youtube videos. <u>Underline</u> words as terms and <i>italicize</i> words as definitions of flashcards.
             </DialogContentText>
           </DialogContent>
           <DialogActions>

@@ -94,7 +94,7 @@ class App extends Component {
             </div>
             <div className="split" id="splitRight">
               <StudyMaterial
-                handleClick={()=>this.setState({ flashcard_queries: [] }, ()=>this.processWords())}
+                handleClick={()=>this.setState({ flashcard_queries: [], youtube_results: [] }, ()=>this.processWords())}
                 flashcards={this.state.flashcard_queries}
                 youtubeVids={this.state.youtube_results}
               />
