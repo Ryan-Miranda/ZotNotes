@@ -13,7 +13,7 @@ import Youtube from './Youtube.js';
 
 function TabContainer({ children, dir }) {
   return (
-    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+    <Typography component="div" dir={dir}>
       {children}
     </Typography>
   );
@@ -67,13 +67,18 @@ class FullWidthTabs extends React.Component {
           onChangeIndex={this.handleChangeIndex}
         >
           <TabContainer dir={theme.direction}>
-            {/* Nothing processed yet or no words. */}
-            <div style={{ height: 740, overflow: 'scroll', paddingTop: 10 }}>
-              <Youtube />
+            <div style={{ height: 750, overflow: 'scroll', paddingTop: 10 }}>
+              {
+                this.props.youtubeVids.length === 0 ?
+                "Nothing processed yet or no words." :
+                this.props.youtubeVids.map(({ query, videoIds }) => {
+                  return <Youtube query={query} videoIds={videoIds} key={query} />
+                })
+              }
             </div>
           </TabContainer>
             <TabContainer dir={theme.direction} >
-              <div style={{ height: 740, overflow: 'scroll', paddingTop: 10 }}>
+              <div style={{ height: 750, overflow: 'scroll', paddingTop: 10 }}>
                 {
                   this.props.flashcards.length === 0 ?
                   "Nothing processed yet or no words." :

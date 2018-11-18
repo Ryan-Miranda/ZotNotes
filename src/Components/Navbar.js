@@ -47,8 +47,9 @@ class ButtonAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" className={classes.theme}>
           <Toolbar>
-            <Typography variant="h5" color="inherit" className={classes.grow}>
-              ZotNotes
+            <img src="../logo.png" alt="logo" style={{borderRadius: 30}}/>
+            <Typography variant="h4" color="inherit" className={classes.grow}>
+              <b>ZotNotes</b>
             </Typography>
             <Button mini variant="fab" color="secondary" aria-label="Add" className={classes.button}
                     onClick={this.handleHelpOpen}

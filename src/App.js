@@ -14,6 +14,7 @@ class App extends Component {
   state = {
     text: "",
     flashcard_queries: [],
+    youtube_results: [],
   }
 
   setQuillRef = (ref) => {
@@ -57,8 +58,26 @@ class App extends Component {
         return (a[0].attr > b.attr) - (b[0].attr < b.attr);
     }).slice(0,3);
 
-    // console.log("YOUTUBE QUERIES:", youtube_queries);
-    // console.log("FLASHCARDS:", flashcard_queries);
+
+    const ytAPI = 'AIzaSyA8MowbhKsiZJoPLskfdxMFSWI4Ow-Z1kk';
+    const baseURL = 'https://www.googleapis.com/youtube/v3/search';
+
+    for (const word of top3) {
+      const apiURL = baseURL + "?key=" + ytAPI + "&part=snippet&type=video&maxResults=5&q=" + word[0];
+      axios.get(apiURL)
+      .then(({data}) => {
+        let videoIds = [];
+        for(const item of data.items) {
+          videoIds.push(item.id.videoId);
+        }
+        let copy = this.state.youtube_results;
+        copy.push({
+          query: word[0],
+          videoIds: videoIds,
+        });
+        this.setState({ youtube_results: copy });
+      })
+    }
   }
 
   render() {
@@ -74,7 +93,11 @@ class App extends Component {
               />
             </div>
             <div className="split" id="splitRight">
-              <StudyMaterial handleClick={()=>this.setState({ flashcard_queries: [] }, ()=>this.processWords())} flashcards={this.state.flashcard_queries}/>
+              <StudyMaterial
+                handleClick={()=>this.setState({ flashcard_queries: [] }, ()=>this.processWords())}
+                flashcards={this.state.flashcard_queries}
+                youtubeVids={this.state.youtube_results}
+              />
             </div>
           </div>
         </div>

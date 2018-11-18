@@ -31,7 +31,7 @@ function StudyMaterial(props) {
   const { classes } = props;
   return (
     <div className={classes.buttonContainer}>
-      <Tabs flashcards={props.flashcards}/>
+      <Tabs flashcards={props.flashcards} youtubeVids={props.youtubeVids}/>
       <Button size="large" variant="contained" className={classes.button}
               onClick={props.handleClick}
       >
