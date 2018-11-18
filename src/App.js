@@ -51,18 +51,18 @@ class App extends Component {
       }
     }
 
-    const top3 = Object.entries(youtube_queries).sort((a,b) => {
+    const top = Object.entries(youtube_queries).sort((a,b) => {
       if (a[1] !== b[1])
         return b[1]-a[1];
       else
         return (a[0].attr > b.attr) - (b[0].attr < b.attr);
-    }).slice(0,3);
+    });
 
 
     const ytAPI = 'AIzaSyA8MowbhKsiZJoPLskfdxMFSWI4Ow-Z1kk';
     const baseURL = 'https://www.googleapis.com/youtube/v3/search';
 
-    for (const word of top3) {
+    for (const word of top) {
       const apiURL = baseURL + "?key=" + ytAPI + "&part=snippet&type=video&maxResults=5&q=" + word[0];
       axios.get(apiURL)
       .then(({data}) => {
